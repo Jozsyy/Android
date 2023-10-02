@@ -1,10 +1,11 @@
 import java.util.Base64
+import kotlin.math.sqrt
 
 //3.
 fun isPrime(a: Int): Boolean {
-    if (a < 1) return false
+    if (a < 2) return false
     if (a != 2 && a % 2 == 0) return false
-    for (n in 3..a / 2 step 2) {
+    for (n in 3..sqrt(a.toDouble()).toInt() step 2) {
         if (a % n == 0) return false
     }
     return true
@@ -110,7 +111,7 @@ fun main() {
 
     var av:Double=0.0
     days.map { av=av+it.length }
-    av=av/7
+    av /= days.size
     println("\nAverage length of days: $av")
 
 //7.
