@@ -1,0 +1,36 @@
+Mi a Föld legnagyobb égiteste?
+Hold
+Nap
+Mars
+Jupiter
+2
+Melyik bolygó a Naprendszerünk hetedik bolygója?
+Mars
+Jupiter
+Szaturnusz
+Uránusz
+4
+Melyik állat a leghosszabb ideig él a szárazföldi gerincesek közül?
+Elefánt
+Galápagoszi óriásteknős
+Krokodil
+Gorilla
+2
+Melyik a legkisebb prím szám?
+0
+1
+2
+3
+3
+Mennyi 5+5?
+11
+9
+8
+10
+4
+Mi a deriváltja f(x)=x^2+2x+1 függvénynek?
+2x+2
+2x
+x+1
+x^2+2x
+1
