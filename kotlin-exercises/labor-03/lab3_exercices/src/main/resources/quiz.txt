@@ -34,3 +34,27 @@ Mi a deriváltja f(x)=x^2+2x+1 függvénynek?
 x+1
 x^2+2x
 1
+A felsoroltak közül, mi Görögország jellegzetes itala?
+Beherovka
+Vodka
+Ouzo
+Wisky
+3
+Ki volt a gőzgép feltalálója?
+Nikola Tesla
+Robert Fultom
+George Stephenson
+James Watt
+4
+Melyik elemnek áll egy betűből a vegyjele?
+Hélium
+Réz
+Szén
+Vas
+3
+Hány deciliter 7 és fél liter?
+7.5 dl
+75 dl
+750 dl
+7500 dl
+2

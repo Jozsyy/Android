@@ -1,13 +1,11 @@
 fun main(args: Array<String>) {
+    println("\t!!!QUIZ!!!")
+    println("Valaszkent a sorszamot add meg!\n")
 
-    val repo=ItemRepository
-    val item=repo.randomItem()
-    println("Random item = $item")
-//    val repo = ItemRepository
-//    val service = ItemService(repo)
-//    val itemController =  ItemController(service)
+    //val itemController = ItemController(ItemService(ItemRepository))  //Egyszeru meghivas
+    val repo = ItemRepository
+    val service = ItemService(repo)
+    val itemController =  ItemController(service)
 
-    //val itemController = ItemController(ItemService(ItemRepository))  //vagy igy
-
-    itemController.quiz(3)
+    itemController.quiz(6)
 }
