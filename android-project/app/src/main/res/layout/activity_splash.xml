@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_image"
-        tools:context=".SplashActivity" android:animateLayoutChanges="true">
+        tools:context=".activity.SplashActivity" android:animateLayoutChanges="true">
     <ImageView
             android:layout_width="302dp"
             android:layout_height="356dp" app:srcCompat="@drawable/logo_no_background"
