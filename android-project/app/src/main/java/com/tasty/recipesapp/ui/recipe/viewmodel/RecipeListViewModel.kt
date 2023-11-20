@@ -9,6 +9,7 @@ import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 class RecipeListViewModel: ViewModel() {
     private val repository = RecipeRepository
 
+    //Live data member
     var recipeList: MutableLiveData<List<RecipeModel>> = MutableLiveData()
 
     fun fetchRecipeData(context: Context){

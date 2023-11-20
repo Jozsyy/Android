@@ -8,7 +8,7 @@
         android:background="@drawable/background_image"
         tools:context=".activity.SplashActivity" android:animateLayoutChanges="true">
     <ImageView
-            android:layout_width="302dp"
-            android:layout_height="356dp" app:srcCompat="@drawable/logo_no_background"
-            android:id="@+id/imageView4" tools:layout_editor_absoluteY="-2dp" tools:layout_editor_absoluteX="16dp"/>
+            android:layout_width="281dp"
+            android:layout_height="284dp" app:srcCompat="@drawable/logo_no_background"
+            android:id="@+id/imageView_logo" tools:layout_editor_absoluteY="49dp" tools:layout_editor_absoluteX="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

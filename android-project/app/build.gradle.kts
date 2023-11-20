@@ -61,6 +61,9 @@ dependencies {
     //GSON - FOR CONVERTING
     implementation ("com.google.code.gson:gson:2.8.8")
 
+    //Glide - for downloading image
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")

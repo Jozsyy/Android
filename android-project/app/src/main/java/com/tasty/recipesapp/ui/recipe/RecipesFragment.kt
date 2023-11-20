@@ -10,12 +10,16 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tasty.recipesapp.R
+import com.tasty.recipesapp.databinding.FragmentRecipesBinding
 import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
 
 class RecipesFragment : Fragment() {
 
+    private lateinit var recipesAdapter: RecipesListAdapter
+    private lateinit var binding: FragmentRecipesBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,9 +39,10 @@ class RecipesFragment : Fragment() {
 //                Log.d(TAG, "Recipe name: ${recipe.name}")
 //            }
 //        }
-        
+
         val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
 
+        //Megnezi, hogy a context null vagy nem
         context?.let{
             viewModel.fetchRecipeData(it)
         }
@@ -47,10 +52,27 @@ class RecipesFragment : Fragment() {
             for(recipe: RecipeModel in recipes){
                 Log.d(TAG, "Recipe Name: ${recipe.name}")
                 Log.d(TAG,"Recipe Description: ${recipe.description}")
+                Log.d(TAG,"Recipe Time: ${recipe.time}")
                 Log.d(TAG, "----------------------------------------")
             }
 
+            //Create adapter
+            recipesAdapter = RecipesListAdapter(recipes, requireContext())
+            recipesAdapter.setData(recipes)
+
+            //Notify adapter about the source/data change
+            //recipesAdapter.notifyDataSetChanged()
+            recipesAdapter.notifyItemRangeChanged(0,recipes.lastIndex)
+
+
         }
 
+    }
+
+    private fun initRecyclerView(){
+        recipesAdapter = RecipesListAdapter(ArrayList(),requireContext())
+//        onItemClickListener = {
+//                recipe -> navigateToRecipeDetail(recipe)
+//        })
     }
 }
