@@ -6,21 +6,22 @@
 
     <RelativeLayout
             android:orientation="vertical"
-            android:layout_width="414dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"
-            android:layout_marginEnd="16dp">
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.666">
 
         <ImageView
-                android:layout_width="150dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
                 android:id="@+id/recipeImageView"
-                android:layout_marginRight="4dp"
-        />
+                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"/>
         <TextView
                 android:text="Title"
                 android:layout_toEndOf="@+id/recipeImageView"
+                android:textColor="@color/red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/recipeItemTitleView"
                 android:textSize="20sp"/>
@@ -32,14 +33,49 @@
                 android:layout_height="wrap_content" android:id="@+id/recipeItemDescriptionView"
                 android:textSize="14sp"
         />
-        <Button
-                android:text="@string/details"
+        <TextView
+                android:text="Rating:"
+                android:layout_below="@+id/recipeImageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/recipeItemDescriptionButton"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="30dp" android:layout_alignParentEnd="true"
-                android:layout_marginEnd="270dp" android:layout_marginTop="127dp" android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" android:layout_marginStart="44dp"
-                android:backgroundTint="@color/red"/>
+                android:layout_height="wrap_content" android:id="@+id/recipeItemRatingText"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"/>
+        <TextView
+                android:text="5.0"
+                android:layout_below="@+id/recipeImageView"
+                android:layout_toEndOf="@+id/recipeItemRatingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemRating"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"/>
+
+        <TextView
+                android:text="Details"
+                android:layout_below="@+id/recipeItemRatingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemDetails"
+                android:textSize="16sp"
+                android:textColor="@color/yellow"
+                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:onClick="onClick"
+                android:clickable="true"
+                />
+
+        <TextView
+                android:text="Add to wishlist"
+                android:layout_below="@+id/recipeItemRatingText"
+                android:layout_toEndOf="@+id/recipeItemDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemWishlist"
+                android:textSize="16sp"
+                android:textColor="@color/yellow"
+                android:layout_marginTop="4dp" android:layout_marginStart="10dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:onClick="onClick"
+                android:clickable="true"
+        />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
