@@ -4,7 +4,7 @@ data class RecipeDTO (
     val id: Int,
     val name: String,
     val description: String? = "Default",
-    val thumbnailUrl: String,
+    val thumbnail_url: String,
     val position: Int,
     val start_time: Int,
     val end_time: Int,
@@ -19,7 +19,7 @@ fun RecipeDTO.toModel(): RecipeModel{
             start_time = this.start_time,
             end_time = this.end_time
         ),
-        thumbnail_url = this.thumbnailUrl
+        thumbnail_url = this.thumbnail_url
     )
 }
 

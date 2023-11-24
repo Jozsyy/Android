@@ -3,5 +3,6 @@
     <string name="welclome">Welcome</string>
     <string name="get_started">Get Started</string>
     <string name="to_the">to the Recipe Hub</string>
+    <string name="details">Deatils</string>
     <string name="user_ratings">Ratings:</string>
 </resources>

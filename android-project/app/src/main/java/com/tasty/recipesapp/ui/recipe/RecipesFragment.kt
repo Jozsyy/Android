@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.FragmentRecipesBinding
-import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
@@ -19,7 +19,8 @@ import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
 class RecipesFragment : Fragment() {
 
     private lateinit var recipesAdapter: RecipesListAdapter
-    private lateinit var binding: FragmentRecipesBinding
+    private lateinit var recycler_view: RecyclerView
+    //private lateinit var binding: FragmentRecipesBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,22 +58,25 @@ class RecipesFragment : Fragment() {
             }
 
             //Create adapter
-            recipesAdapter = RecipesListAdapter(recipes, requireContext())
+            //recipesAdapter = RecipesListAdapter(recipes, requireContext())
+            recycler_view=view.findViewById(R.id.recyclerView)
+            initRecyclerView()
             recipesAdapter.setData(recipes)
 
             //Notify adapter about the source/data change
-            //recipesAdapter.notifyDataSetChanged()
+            //recipesAdapter.notifyDataSetChanged() //this or that
             recipesAdapter.notifyItemRangeChanged(0,recipes.lastIndex)
-
 
         }
 
     }
 
     private fun initRecyclerView(){
-        recipesAdapter = RecipesListAdapter(ArrayList(),requireContext())
+        recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>(),requireContext())
 //        onItemClickListener = {
 //                recipe -> navigateToRecipeDetail(recipe)
 //        })
+        recycler_view.adapter=recipesAdapter
+        recycler_view.layoutManager=LinearLayoutManager(context)
     }
 }

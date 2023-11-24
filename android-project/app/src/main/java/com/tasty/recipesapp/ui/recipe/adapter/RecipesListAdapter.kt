@@ -42,7 +42,7 @@ class RecipesListAdapter (
     }
 
     fun setData(newList: List<RecipeModel>){
-        recipeList=newList
+        recipeList = newList
     }
 
     inner class RecipeItemViewHolder(binding: RecipeListItemBinding):
