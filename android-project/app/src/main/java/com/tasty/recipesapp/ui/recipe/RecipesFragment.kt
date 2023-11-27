@@ -7,20 +7,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.FragmentRecipesBinding
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.repository.recipe.model.UserRatingsModel
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
 
 class RecipesFragment : Fragment() {
 
+    companion object{
+        private val TAG: String? = RecipesFragment::class.java.canonicalName
+        const val BUNDLE_EXTRA_SELECTED_RECIPE_ID = "selected_recipe_id"
+    }
+
     private lateinit var recipesAdapter: RecipesListAdapter
     private lateinit var recycler_view: RecyclerView
-    //private lateinit var binding: FragmentRecipesBinding
+    private lateinit var binding: FragmentRecipesBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,12 +58,11 @@ class RecipesFragment : Fragment() {
 
         viewModel.recipeList.observe(viewLifecycleOwner){recipes ->
 
-            for(recipe: RecipeModel in recipes){
-                Log.d(TAG, "Recipe Name: ${recipe.name}")
-                Log.d(TAG,"Recipe Description: ${recipe.description}")
-                Log.d(TAG,"Recipe Time: ${recipe.time}")
-                Log.d(TAG, "----------------------------------------")
-            }
+//            for(recipe: RecipeModel in recipes){
+//                Log.d(TAG, "Recipe Name: ${recipe.name}")
+//                Log.d(TAG,"Recipe Description: ${recipe.description}")
+//                Log.d(TAG, "----------------------------------------")
+//            }
 
             //Create adapter
             //recipesAdapter = RecipesListAdapter(recipes, requireContext())
@@ -72,11 +79,20 @@ class RecipesFragment : Fragment() {
     }
 
     private fun initRecyclerView(){
-        recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>(),requireContext())
-//        onItemClickListener = {
-//                recipe -> navigateToRecipeDetail(recipe)
-//        })
+        recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>()
+            ,requireContext(),
+        onItemClickListener = {
+                recipe -> navigateToRecipeDetail(recipe)
+        })
+        //ha nincs findViewById akkor itt kell binding.recycler_view.adapter=....
         recycler_view.adapter=recipesAdapter
         recycler_view.layoutManager=LinearLayoutManager(context)
+    }
+
+    private fun navigateToRecipeDetail(recipe: RecipeModel){
+        findNavController().navigate(
+            R.id.action_recipesFragment_to_recipeDetailFragment,
+            bundleOf(BUNDLE_EXTRA_SELECTED_RECIPE_ID to recipe.id)
+        )
     }
 }

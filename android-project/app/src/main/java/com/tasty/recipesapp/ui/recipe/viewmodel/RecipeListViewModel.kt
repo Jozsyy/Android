@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.repository.recipe.model.UserRatingsModel
 
 class RecipeListViewModel: ViewModel() {
     private val repository = RecipeRepository

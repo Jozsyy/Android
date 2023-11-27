@@ -8,9 +8,12 @@ import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.repository.recipe.model.RecipesDTO
 import com.tasty.recipesapp.repository.recipe.model.toModelList
 import java.io.IOException
+import java.util.ArrayList
 
 object RecipeRepository {
     private val TAG: String? = RecipeRepository::class.java.canonicalName
+    private var recipeList:List<RecipeModel> = emptyList()
+    private var myRecipeList: ArrayList<RecipeModel> = ArrayList()
 
     fun getRecipes(context: Context): List<RecipeModel>{
         lateinit var jsonString: String
@@ -29,6 +32,21 @@ object RecipeRepository {
         //Convert jsonString into Kotlin object
         val recipesResponse: RecipesDTO = Gson().fromJson(jsonString, object : TypeToken<RecipesDTO>() {}.type)
 
-        return recipesResponse.results.toModelList()
+        recipeList = recipesResponse.results.toModelList()
+        return recipeList
     }
+
+    fun getRecipe(recipeId: Int): RecipeModel?{
+        return recipeList.find{ it.id == recipeId}
+    }
+
+    fun insertRecipe(recipeModel: RecipeModel): Boolean{
+        return myRecipeList.add(recipeModel)
+    }
+
+    fun deleteRecipe(recipeModel: RecipeModel): Boolean{
+        return myRecipeList.remove(recipeModel)
+    }
+
+    fun getMyRecipe(context: Context) = myRecipeList
 }

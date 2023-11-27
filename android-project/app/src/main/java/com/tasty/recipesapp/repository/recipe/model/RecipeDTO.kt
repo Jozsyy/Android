@@ -5,21 +5,16 @@ data class RecipeDTO (
     val name: String,
     val description: String? = "Default",
     val thumbnail_url: String,
-    val position: Int,
-    val start_time: Int,
-    val end_time: Int,
-    val temperature: String?
+    val user_ratings: UserRatingsDTO
 )
 
 fun RecipeDTO.toModel(): RecipeModel{
     return RecipeModel(
+        id = this.id,
         name = this.name,
         description = this.description,
-        time=RecipeTime(
-            start_time = this.start_time,
-            end_time = this.end_time
-        ),
-        thumbnail_url = this.thumbnail_url
+        thumbnail_url = this.thumbnail_url,
+        user_ratings = this.user_ratings.toModel()
     )
 }
 

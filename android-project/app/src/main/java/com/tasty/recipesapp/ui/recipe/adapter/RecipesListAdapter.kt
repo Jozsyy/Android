@@ -13,8 +13,8 @@ import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 
 class RecipesListAdapter (
     private var recipeList: List<RecipeModel>,
-    private val context: Context
-    //private val onItemClickListener: (RecipeModel) -> Unit
+    private val context: Context,
+    private val onItemClickListener: (RecipeModel) -> Unit  //fuggveny RecipeModel bemenet, Unit kimenet
 ): RecyclerView.Adapter<RecipesListAdapter.RecipeItemViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesListAdapter.RecipeItemViewHolder {
@@ -38,11 +38,12 @@ class RecipesListAdapter (
             .fallback(R.drawable.ic_launcher_background) //Ha nem tudja letolteni a kepet
             .into(holder.recipeImageView)
 
-        //val user_ratings =
+        var user_ratings = currentRecipe.user_ratings.score * 10
+        holder.recipeItemRatingView.text=user_ratings.toString()
     }
 
-    fun setData(newList: List<RecipeModel>){
-        recipeList = newList
+    fun setData(newRecipeList: List<RecipeModel>){
+        recipeList = newRecipeList
     }
 
     inner class RecipeItemViewHolder(binding: RecipeListItemBinding):
@@ -50,5 +51,15 @@ class RecipesListAdapter (
                 val recipeTitleView: TextView = binding.recipeItemTitleView
                 val recipeDescriptionView: TextView = binding.recipeItemDescriptionView
                 val recipeImageView: ImageView = binding.recipeImageView
+                val recipeItemRatingView: TextView = binding.recipeItemRatingView
+
+            init{
+                binding.root.setOnClickListener {
+                    val currentPosition: Int = this.adapterPosition
+                    val currentRecipe: RecipeModel = recipeList[currentPosition]
+
+                    onItemClickListener(currentRecipe)
+                }
+            }
             }
 }
