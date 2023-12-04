@@ -10,7 +10,7 @@ import com.tasty.recipesapp.repository.recipe.model.toModelList
 import java.io.IOException
 import java.util.ArrayList
 
-object RecipeRepository {
+object RecipeRepository {  //private val recipeDao:RecipeDao
     private val TAG: String? = RecipeRepository::class.java.canonicalName
     private var recipeList:List<RecipeModel> = emptyList()
     private var myRecipeList: ArrayList<RecipeModel> = ArrayList()

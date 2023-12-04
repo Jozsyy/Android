@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.FragmentRecipesBinding
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
-import com.tasty.recipesapp.repository.recipe.model.UserRatingsModel
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
 
@@ -79,12 +78,19 @@ class RecipesFragment : Fragment() {
     }
 
     private fun initRecyclerView(){
-        recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>()
-            ,requireContext(),
-        onItemClickListener = {
+        recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>(),
+            requireContext(),
+            onItemClickListener = {
                 recipe -> navigateToRecipeDetail(recipe)
-        })
+            }
+            //Add to wishlist
+            ,onItemClickListener2 ={
+                recipe -> insertToMyList(recipe)
+            }
+        )
         //ha nincs findViewById akkor itt kell binding.recycler_view.adapter=....
+        //binding = FragmentRecipesBinding.inflate(layoutInflater)
+
         recycler_view.adapter=recipesAdapter
         recycler_view.layoutManager=LinearLayoutManager(context)
     }
@@ -94,5 +100,9 @@ class RecipesFragment : Fragment() {
             R.id.action_recipesFragment_to_recipeDetailFragment,
             bundleOf(BUNDLE_EXTRA_SELECTED_RECIPE_ID to recipe.id)
         )
+    }
+
+    private fun insertToMyList(recipe: RecipeModel){
+        insertToMyList(recipe)
     }
 }

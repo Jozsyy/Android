@@ -10,11 +10,14 @@ import com.bumptech.glide.Glide
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.RecipeListItemBinding
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.ui.recipe.RecipesFragment
 
 class RecipesListAdapter (
     private var recipeList: List<RecipeModel>,
     private val context: Context,
-    private val onItemClickListener: (RecipeModel) -> Unit  //fuggveny RecipeModel bemenet, Unit kimenet
+    private val onItemClickListener: (RecipeModel) -> Unit,  //fuggveny RecipeModel bemenet, Unit kimenet
+    private val onItemClickListener2: (RecipeModel) -> Unit = {}, //nem muszaj erteket adni neki konstruktor hivas eseten
+    private val onItemLongClickListener: (RecipeModel) -> Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
 ): RecyclerView.Adapter<RecipesListAdapter.RecipeItemViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesListAdapter.RecipeItemViewHolder {
@@ -54,12 +57,30 @@ class RecipesListAdapter (
                 val recipeItemRatingView: TextView = binding.recipeItemRatingView
 
             init{
-                binding.root.setOnClickListener {
+                binding.recipeItemDetails.setOnClickListener {
                     val currentPosition: Int = this.adapterPosition
                     val currentRecipe: RecipeModel = recipeList[currentPosition]
 
                     onItemClickListener(currentRecipe)
                 }
+
+                binding.recipeItemWishlist.setOnClickListener {
+                    val currentPosition: Int = this.adapterPosition
+                    val currentRecipe: RecipeModel = recipeList[currentPosition]
+
+                    onItemClickListener2(currentRecipe)
+                    true
+                }
+
+                binding.root.setOnLongClickListener{
+                    val currentPosition: Int = this.adapterPosition
+                    val currentRecipe: RecipeModel = recipeList[currentPosition]
+
+                    onItemLongClickListener(currentRecipe)
+                    true
+                }
+
+
             }
             }
 }

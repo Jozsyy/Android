@@ -2,13 +2,70 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".ui.recipe.RecipeDetailFragment" android:background="@color/brown">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello from Recipe Detail fragment"/>
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.666">
+
+        <TextView
+                android:text="Title"
+                android:textColor="@color/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemTitleView"
+                android:textSize="24sp"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:id="@+id/recipeImageView"
+                android:layout_below="@+id/recipeItemTitleView"
+                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"/>
+
+        <TextView
+                android:text="Description"
+                android:layout_below="@+id/recipeItemRatingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemDescriptionView"
+                android:textSize="14sp"
+        />
+        <TextView
+                android:text="Rating:"
+                android:layout_below="@+id/recipeImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemRatingText"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"/>
+        <TextView
+                android:text="5.0"
+                android:layout_below="@+id/recipeImageView"
+                android:layout_toEndOf="@+id/recipeItemRatingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemRatingView"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"/>
+
+
+        <TextView
+                android:text="Add to wishlist"
+                android:layout_toEndOf="@id/recipeItemRatingView"
+                android:layout_below="@+id/recipeImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/recipeItemWishlist"
+                android:textSize="16sp"
+                android:textColor="@color/yellow"
+                android:layout_marginTop="4dp" android:layout_marginStart="10dp" android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:onClick="onClick"
+                android:clickable="true"
+        />
+    </RelativeLayout>
 
 </FrameLayout>
