@@ -8,8 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tasty.recipesapp.R
+import com.tasty.recipesapp.databinding.FragmentProfileBinding
+import com.tasty.recipesapp.databinding.FragmentRecipeDetailBinding
 import com.tasty.recipesapp.databinding.RecipeListItemBinding
+import com.tasty.recipesapp.repository.recipe.model.InstructionDTO
+import com.tasty.recipesapp.repository.recipe.model.InstructionModel
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.ui.profile.ProfileFragment
+import com.tasty.recipesapp.ui.recipe.RecipeDetailFragment
 import com.tasty.recipesapp.ui.recipe.RecipesFragment
 
 class RecipesListAdapter (
@@ -17,12 +23,14 @@ class RecipesListAdapter (
     private val context: Context,
     private val onItemClickListener: (RecipeModel) -> Unit,  //fuggveny RecipeModel bemenet, Unit kimenet
     private val onItemClickListener2: (RecipeModel) -> Unit = {}, //nem muszaj erteket adni neki konstruktor hivas eseten
+    private val onNewRecipeButtonClickListener: ()->Unit = {}, //nem muszaj erteket adni neki konstruktor hivas eseten
     private val onItemLongClickListener: (RecipeModel) -> Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
 ): RecyclerView.Adapter<RecipesListAdapter.RecipeItemViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesListAdapter.RecipeItemViewHolder {
         val binding= RecipeListItemBinding.inflate(LayoutInflater.from(context),parent, false)
-        return RecipeItemViewHolder(binding)
+        val binding2= FragmentProfileBinding.inflate(LayoutInflater.from(context),parent, false )
+        return RecipeItemViewHolder(binding, binding2)
     }
 
     override fun getItemCount(): Int = recipeList.size
@@ -43,14 +51,16 @@ class RecipesListAdapter (
 
         var user_ratings = currentRecipe.user_ratings.score * 10
         holder.recipeItemRatingView.text=user_ratings.toString()
+
     }
 
     fun setData(newRecipeList: List<RecipeModel>){
         recipeList = newRecipeList
     }
 
-    inner class RecipeItemViewHolder(binding: RecipeListItemBinding):
+    inner class RecipeItemViewHolder(binding: RecipeListItemBinding, binding2:FragmentProfileBinding):
             RecyclerView.ViewHolder(binding.root){
+
                 val recipeTitleView: TextView = binding.recipeItemTitleView
                 val recipeDescriptionView: TextView = binding.recipeItemDescriptionView
                 val recipeImageView: ImageView = binding.recipeImageView
@@ -69,7 +79,6 @@ class RecipesListAdapter (
                     val currentRecipe: RecipeModel = recipeList[currentPosition]
 
                     onItemClickListener2(currentRecipe)
-                    true
                 }
 
                 binding.root.setOnLongClickListener{
@@ -80,6 +89,9 @@ class RecipesListAdapter (
                     true
                 }
 
+                binding2.newRecipeButton.setOnClickListener{
+                    onNewRecipeButtonClickListener()
+                }
 
             }
             }

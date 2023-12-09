@@ -1,9 +1,12 @@
 package com.tasty.recipesapp.repository.recipe.model
 
-data class RecipeModel (
+import android.text.Editable
+
+data class RecipeModel(
     val id: Int,
     val name: String,
     val description: String? = "",
     val thumbnail_url:String,
-    val user_ratings: UserRatingsModel
+    val user_ratings: UserRatingsModel,
+    val instructions: List<InstructionModel>
 )

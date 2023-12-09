@@ -1,4 +1,4 @@
-package com.tasty.recipesapp.ui.recipe
+package com.tasty.recipesapp.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ import com.tasty.recipesapp.ui.profile.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment(){
     companion object{
-        private val TAG: String? = RecipesFragment::class.java.canonicalName
+        private val TAG: String? = ProfileFragment::class.java.canonicalName
         const val BUNDLE_EXTRA_SELECTED_RECIPE_ID = "selected_recipe_id"
     }
 
@@ -47,16 +47,12 @@ class ProfileFragment : Fragment(){
 
         val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-       // viewModel.fetchRecipeData()
-
-        viewModel.myRecipeList.observe(viewLifecycleOwner){ myRecipes ->
-            recipesAdapter.setData(myRecipes)
-            recipesAdapter.notifyItemRangeChanged(0,myRecipes.lastIndex)
+        //Megnezi, hogy a context null vagy nem
+        context?.let{
+            viewModel.fetchRecipeData(it)
         }
 
-        //viewModel
-
-        viewModel.myRecipeList.observe(viewLifecycleOwner){recipes ->
+        viewModel.myRecipeList.observe(viewLifecycleOwner){myRecipes ->
 
 //            for(recipe: RecipeModel in recipes){
 //                Log.d(TAG, "Recipe Name: ${recipe.name}")
@@ -68,15 +64,11 @@ class ProfileFragment : Fragment(){
             //recipesAdapter = RecipesListAdapter(recipes, requireContext())
             recycler_view=view.findViewById(R.id.recyclerView)
             initRecyclerView()
-            recipesAdapter.setData(recipes)
-
-//            binding.newRecipe.setOnClickListener{
-//                navigateToNewRecipe()
-//            }
+            recipesAdapter.setData(myRecipes)
 
             //Notify adapter about the source/data change
             //recipesAdapter.notifyDataSetChanged() //this or that
-            recipesAdapter.notifyItemRangeChanged(0,recipes.lastIndex)
+            recipesAdapter.notifyItemRangeChanged(0,myRecipes.lastIndex)
 
         }
 
@@ -87,6 +79,9 @@ class ProfileFragment : Fragment(){
             requireContext(),
             onItemClickListener = {
                     recipe -> navigateToRecipeDetail(recipe)
+            },
+            onNewRecipeButtonClickListener = {
+                navigateToAddNewRecipe()
             }
 //            onItemLongClickListener = { recipe ->
 //                viewModel.delete(recipe)
@@ -104,7 +99,10 @@ class ProfileFragment : Fragment(){
         )
     }
 
-//    private fun navigateToNewRecipe({
-//
-//    })
+    private fun navigateToAddNewRecipe(){
+        findNavController().navigate(
+            R.id.action_profileFragment_to_newRecipeFragment
+        )
+    }
+
 }

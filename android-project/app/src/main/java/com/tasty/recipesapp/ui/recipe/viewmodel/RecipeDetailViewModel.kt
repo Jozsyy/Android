@@ -15,4 +15,6 @@ class RecipeDetailViewModel: ViewModel(){ //class RecipeDetailViewModel(private 
         val recipe = RecipeRepository.getRecipe(recipeId)
         this.recipe.value = recipe
     }
+
+
 }

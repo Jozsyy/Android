@@ -5,67 +5,179 @@
              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".ui.recipe.RecipeDetailFragment" android:background="@color/brown">
 
-    <RelativeLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.666">
 
-        <TextView
-                android:text="Title"
-                android:textColor="@color/red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/recipeItemTitleView"
-                android:textSize="24sp"/>
-        <ImageView
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:id="@+id/recipeImageView"
-                android:layout_below="@+id/recipeItemTitleView"
-                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"/>
+                android:layout_height="match_parent">
 
-        <TextView
-                android:text="Description"
-                android:layout_below="@+id/recipeItemRatingText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/recipeItemDescriptionView"
-                android:textSize="14sp"
-        />
-        <TextView
-                android:text="Rating:"
-                android:layout_below="@+id/recipeImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/recipeItemRatingText"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"/>
-        <TextView
-                android:text="5.0"
-                android:layout_below="@+id/recipeImageView"
-                android:layout_toEndOf="@+id/recipeItemRatingText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/recipeItemRatingView"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"/>
+            <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.666">
+
+            <TextView
+                    android:text="Title"
+                    android:textColor="@color/red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/recipeItemTitleView"
+                    android:textSize="24sp"/>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:id="@+id/recipeImageView"
+                    android:layout_below="@+id/recipeItemTitleView"
+                    android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"/>
+
+            <TextView
+                    android:text="Rating:"
+                    android:layout_below="@+id/recipeImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/recipeItemRatingText"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp" android:textColor="@color/black"/>
+            <TextView
+                    android:text="5.0"
+                    android:layout_below="@+id/recipeImageView"
+                    android:layout_toEndOf="@+id/recipeItemRatingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/recipeItemRatingView"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp" android:textColor="@color/black"/>
 
 
-        <TextView
-                android:text="Add to wishlist"
-                android:layout_toEndOf="@id/recipeItemRatingView"
-                android:layout_below="@+id/recipeImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/recipeItemWishlist"
-                android:textSize="16sp"
-                android:textColor="@color/yellow"
-                android:layout_marginTop="4dp" android:layout_marginStart="10dp" android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
-                android:onClick="onClick"
-                android:clickable="true"
-        />
-    </RelativeLayout>
+            <TextView
+                    android:text="Add to wishlist"
+                    android:layout_toEndOf="@id/recipeItemRatingView"
+                    android:layout_below="@+id/recipeImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/recipeItemWishlist"
+                    android:textSize="16sp"
+                    android:textColor="@color/yellow"
+                    android:layout_marginTop="4dp" android:layout_marginStart="10dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:onClick="onClick"
+                    android:clickable="true"
+            />
+
+            <TextView
+                    android:text="Description"
+                    android:layout_below="@+id/recipeItemRatingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/recipeDescription"
+                    android:textSize="18sp"
+                    android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:textColor="@color/red"/>
+
+            <TextView
+                    android:text="Description..."
+                    android:layout_below="@+id/recipeDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/recipeItemDescriptionView"
+                    android:textSize="14sp"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+            />
+            <TextView
+                    android:text="Instructions"
+                    android:layout_below="@+id/recipeItemDescriptionView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/recipeInstructions"
+                    android:textSize="18sp"
+                    android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:textColor="@color/red"/>
+            />
+            <TextView
+                    android:text="instruction1"
+                    android:layout_below="@+id/recipeInstructions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:id="@+id/recipeItemInstruction1"/>
+
+            <TextView
+                    android:text="Time duration:"
+                    android:layout_below="@+id/recipeItemInstruction1"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:id="@+id/recipeTime1"/>
+
+            <TextView
+                    android:text="50 min"
+                    android:layout_toEndOf="@+id/recipeTime1"
+                    android:layout_below="@+id/recipeItemInstruction1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:id="@+id/recipeInstructionTime1"/>
+
+            <TextView
+                    android:text="instruction2"
+                    android:layout_below="@+id/recipeTime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:id="@+id/recipeItemInstruction2"/>
+
+            <TextView
+                    android:text="Time duration:"
+                    android:layout_below="@+id/recipeItemInstruction2"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:id="@+id/recipeTime2"/>
+
+            <TextView
+                    android:text="60 min"
+                    android:layout_toEndOf="@+id/recipeTime2"
+                    android:layout_below="@+id/recipeItemInstruction2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:id="@+id/recipeInstructionTime2"/>
+
+                <TextView
+                        android:text="instruction3"
+                        android:layout_below="@+id/recipeTime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                        android:id="@+id/recipeItemInstruction3"/>
+
+                <TextView
+                        android:text="Time duration:"
+                        android:layout_below="@+id/recipeItemInstruction3"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:id="@+id/recipeTime3"/>
+
+                <TextView
+                        android:text="40 min"
+                        android:layout_toEndOf="@+id/recipeTime3"
+                        android:layout_below="@+id/recipeItemInstruction3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:id="@+id/recipeInstructionTime3"/>
+            </RelativeLayout>
+        </ScrollView>
+
+
 
 </FrameLayout>

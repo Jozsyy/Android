@@ -1,8 +1,11 @@
 package com.tasty.recipesapp.repository.recipe.model
 
 data class  InstructionModel(
+    val id: Int,
     val display_text: String,
-    val time: InstructionTime )
+    val time: InstructionTime,
+    val temperature: String?
+)
 
 
 data class InstructionTime(

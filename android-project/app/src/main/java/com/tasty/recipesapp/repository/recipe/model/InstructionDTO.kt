@@ -11,8 +11,10 @@ data class InstructionDTO(
 
 fun InstructionDTO.toModel():InstructionModel{
     return InstructionModel(
+        id = this.id,
         display_text = this.display_text,
-        time = InstructionTime(this.start_time,this.end_time)
+        time = InstructionTime(this.start_time,this.end_time),
+        temperature = this.temperature
     )
 }
 

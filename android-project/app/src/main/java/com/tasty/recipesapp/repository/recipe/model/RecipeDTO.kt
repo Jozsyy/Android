@@ -5,7 +5,8 @@ data class RecipeDTO (
     val name: String,
     val description: String? = "Default",
     val thumbnail_url: String,
-    val user_ratings: UserRatingsDTO
+    val user_ratings: UserRatingsDTO,
+    val instructions: List<InstructionDTO>
 )
 
 fun RecipeDTO.toModel(): RecipeModel{
@@ -14,7 +15,8 @@ fun RecipeDTO.toModel(): RecipeModel{
         name = this.name,
         description = this.description,
         thumbnail_url = this.thumbnail_url,
-        user_ratings = this.user_ratings.toModel()
+        user_ratings = this.user_ratings.toModel(),
+        instructions = this.instructions.toModelList()
     )
 }
 

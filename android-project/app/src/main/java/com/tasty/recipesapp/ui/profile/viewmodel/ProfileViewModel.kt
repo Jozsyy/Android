@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 
-class ProfileViewModel(private val repository: RecipeRepository): ViewModel() {
+class ProfileViewModel: ViewModel() { //class ProfileViewModel(private val repository: RecipeRepository): ViewModel() {
 
     //Live data member
     var myRecipeList: MutableLiveData<List<RecipeModel>> = MutableLiveData()
@@ -14,15 +14,15 @@ class ProfileViewModel(private val repository: RecipeRepository): ViewModel() {
     var deleteResult: MutableLiveData<Boolean> = MutableLiveData()
 
     fun fetchRecipeData(context: Context){
-        myRecipeList.value = repository.getMyRecipe(context)
+        myRecipeList.value = RecipeRepository.getMyRecipe(context)
     }
 
     fun insertRecipe(recipeModel: RecipeModel){
-        repository.insertRecipe(recipeModel)
+        RecipeRepository.insertRecipe(recipeModel)
     }
 
     fun deleteRecipe(recipeModel: RecipeModel){
-        repository.deleteRecipe(recipeModel)
+        RecipeRepository.deleteRecipe(recipeModel)
     }
 
 

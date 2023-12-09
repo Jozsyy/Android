@@ -72,6 +72,21 @@ class RecipeDetailFragment : Fragment() {
                     .into(picture)
             }
 
+            val instruction1_text : TextView = view.findViewById(R.id.recipeItemInstruction1)
+            instruction1_text.text = "1. "+it.instructions[0].display_text
+            val instruction1_time : TextView = view.findViewById(R.id.recipeInstructionTime1)
+            instruction1_time.text = ((it.instructions[0].time.end_time-it.instructions[0].time.start_time)/60).toString()+" min"
+
+            val instruction2_text : TextView = view.findViewById(R.id.recipeItemInstruction2)
+            instruction2_text.text = "2. "+it.instructions[1].display_text
+            val instruction2_time : TextView = view.findViewById(R.id.recipeInstructionTime2)
+            instruction2_time.text = ((it.instructions[1].time.end_time-it.instructions[1].time.start_time)/60).toString()+" min"
+
+            val instruction3_text : TextView = view.findViewById(R.id.recipeItemInstruction3)
+            instruction3_text.text = "3. "+it.instructions[2].display_text
+            val instruction3_time : TextView = view.findViewById(R.id.recipeInstructionTime3)
+            instruction3_time.text = ((it.instructions[1].time.end_time-it.instructions[1].time.start_time)/60).toString()+" min"
+
 //            binding.recipeItemTitleView.text = it.name
 //            binding.recipeItemDescriptionView.text = it.description
 //            binding.recipeItemRatingText.text = it.user_ratings.toString()
