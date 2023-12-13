@@ -13,7 +13,7 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="298" />
+                            <option name="x" value="281" />
                             <option name="y" value="32" />
                           </Point>
                         </option>
@@ -51,8 +51,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="778" />
-                            <option name="y" value="-246" />
+                            <option name="x" value="757" />
+                            <option name="y" value="-115" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -69,6 +69,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_profileFragment_to_newRecipeFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_profileFragment_to_recipeDetailFragment">
                               <value>
                                 <LayoutPositions />
@@ -84,8 +89,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="726" />
-                            <option name="y" value="218" />
+                            <option name="x" value="766" />
+                            <option name="y" value="212" />
                           </Point>
                         </option>
                       </LayoutPositions>

@@ -20,6 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="100dp"
-            android:clickable="true" android:id="@+id/newRecipeButton"/>
+            android:onClick="onNewRecipeButtonClickListener"
+            android:clickable="false"
+            android:id="@+id/newRecipeButton"/>
 
 </FrameLayout>

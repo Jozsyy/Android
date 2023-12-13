@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
@@ -23,7 +25,9 @@ class ProfileFragment : Fragment(){
 
     private lateinit var recipesAdapter: RecipesListAdapter
     private lateinit var recycler_view: RecyclerView
+    //private val onNewRecipeButtonClickListener: ()->Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
     //private lateinit var binding: FragmentRecipesBinding
+    private lateinit var floatingButton: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,22 +74,25 @@ class ProfileFragment : Fragment(){
             //recipesAdapter.notifyDataSetChanged() //this or that
             recipesAdapter.notifyItemRangeChanged(0,myRecipes.lastIndex)
 
+            floatingButton=view.findViewById(R.id.newRecipeButton)
+            floatingButton.setOnClickListener {
+                navigateToAddNewRecipe()
+            }
+
         }
 
     }
 
     private fun initRecyclerView(){
+        val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>(),
             requireContext(),
             onItemClickListener = {
                     recipe -> navigateToRecipeDetail(recipe)
             },
-            onNewRecipeButtonClickListener = {
-                navigateToAddNewRecipe()
+            onItemLongClickListener = { recipe ->
+                viewModel.deleteRecipe(recipe)
             }
-//            onItemLongClickListener = { recipe ->
-//                viewModel.delete(recipe)
-//            }
         )
         //ha nincs findViewById akkor itt kell binding.recycler_view.adapter=....
         recycler_view.adapter=recipesAdapter

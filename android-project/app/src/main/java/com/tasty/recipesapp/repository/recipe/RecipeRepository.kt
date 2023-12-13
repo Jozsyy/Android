@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson
+import com.tasty.recipesapp.api.RecipeApiClient
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.repository.recipe.model.RecipesDTO
 import com.tasty.recipesapp.repository.recipe.model.toModelList
@@ -15,6 +16,12 @@ object RecipeRepository {  //private val recipeDao:RecipeDao
     private var recipeList:List<RecipeModel> = emptyList()
     private var myRecipeList: ArrayList<RecipeModel> = ArrayList()
 
+    //API client
+    private val recipeApiClient = RecipeApiClient()
+
+    suspend fun  getRecipesFromApi(){
+
+    }
     fun getRecipes(context: Context): List<RecipeModel>{
         lateinit var jsonString: String
 
