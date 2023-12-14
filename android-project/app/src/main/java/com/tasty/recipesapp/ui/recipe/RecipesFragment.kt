@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tasty.recipesapp.R
+import com.tasty.recipesapp.databinding.FragmentRecipeDetailBinding
 import com.tasty.recipesapp.databinding.FragmentRecipesBinding
+import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
@@ -33,7 +35,9 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipes, container, false)
+        //return inflater.inflate(R.layout.fragment_recipes, container, false)
+        binding = FragmentRecipesBinding.inflate(inflater,container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +56,8 @@ class RecipesFragment : Fragment() {
 
         //Megnezi, hogy a context null vagy nem
         context?.let{
-            viewModel.fetchRecipeData(it)
+            //viewModel.fetchRecipeData(it)
+            viewModel.getAllRecipesFromApi()
         }
 
         viewModel.recipeList.observe(viewLifecycleOwner){recipes ->
@@ -103,6 +108,6 @@ class RecipesFragment : Fragment() {
     }
 
     private fun insertToMyList(recipe: RecipeModel){
-        insertToMyList(recipe)
+        RecipeRepository.insertRecipe(recipe)
     }
 }

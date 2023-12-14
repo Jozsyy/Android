@@ -8,5 +8,6 @@ data class RecipeModel(
     val description: String? = "",
     val thumbnail_url:String,
     val user_ratings: UserRatingsModel,
-    val instructions: List<InstructionModel>
+    val instructions: List<InstructionModel>,
+    val video_url: String? = ""
 )

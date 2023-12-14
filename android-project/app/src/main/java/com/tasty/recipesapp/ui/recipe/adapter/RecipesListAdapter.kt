@@ -28,8 +28,8 @@ class RecipesListAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesListAdapter.RecipeItemViewHolder {
         val binding= RecipeListItemBinding.inflate(LayoutInflater.from(context),parent, false)
-        val binding2= FragmentProfileBinding.inflate(LayoutInflater.from(context),parent, false )
-        return RecipeItemViewHolder(binding, binding2)
+        //val binding2= FragmentProfileBinding.inflate(LayoutInflater.from(context),parent, false )
+        return RecipeItemViewHolder(binding)
     }
 
     override fun getItemCount(): Int = recipeList.size
@@ -57,7 +57,7 @@ class RecipesListAdapter (
         recipeList = newRecipeList
     }
 
-    inner class RecipeItemViewHolder(binding: RecipeListItemBinding, binding2:FragmentProfileBinding):
+    inner class RecipeItemViewHolder(binding: RecipeListItemBinding):
             RecyclerView.ViewHolder(binding.root){
 
                 val recipeTitleView: TextView = binding.recipeItemTitleView
@@ -80,7 +80,7 @@ class RecipesListAdapter (
                     onItemClickListener2(currentRecipe)
                 }
 
-                binding2.root.setOnLongClickListener{
+                binding.root.setOnLongClickListener{
                     val currentPosition: Int = this.adapterPosition
                     val currentRecipe: RecipeModel = recipeList[currentPosition]
 

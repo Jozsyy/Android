@@ -5,17 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tasty.recipesapp.R
+import com.tasty.recipesapp.databinding.FragmentProfileBinding
+import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.profile.viewmodel.ProfileViewModel
+import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment(){
     companion object{
@@ -26,7 +32,7 @@ class ProfileFragment : Fragment(){
     private lateinit var recipesAdapter: RecipesListAdapter
     private lateinit var recycler_view: RecyclerView
     //private val onNewRecipeButtonClickListener: ()->Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
-    //private lateinit var binding: FragmentRecipesBinding
+    private lateinit var binding: FragmentProfileBinding
     private lateinit var floatingButton: FloatingActionButton
 
     override fun onCreateView(
@@ -34,7 +40,9 @@ class ProfileFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    // return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(inflater,container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,11 +59,11 @@ class ProfileFragment : Fragment(){
 
         val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
+
         //Megnezi, hogy a context null vagy nem
         context?.let{
             viewModel.fetchRecipeData(it)
         }
-
         viewModel.myRecipeList.observe(viewLifecycleOwner){myRecipes ->
 
 //            for(recipe: RecipeModel in recipes){
@@ -79,19 +87,30 @@ class ProfileFragment : Fragment(){
                 navigateToAddNewRecipe()
             }
 
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                recipesAdapter.setData(myRecipes)
+                recipesAdapter.notifyItemRangeChanged(0, myRecipes.lastIndex)
+            }
+//            var delete_button: TextView = view.findViewById(R.id.recipeItemWishlist)
+//            if( delete_button != null){
+//                delete_button.text="Delete"
+//            }
         }
 
     }
 
     private fun initRecyclerView(){
-        val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>(),
             requireContext(),
             onItemClickListener = {
                     recipe -> navigateToRecipeDetail(recipe)
-            },
-            onItemLongClickListener = { recipe ->
-                viewModel.deleteRecipe(recipe)
+            }
+//            ,onItemClickListener2 = {
+//                recipe -> deleteFromMyList(recipe)
+//            }
+            , onItemLongClickListener = {
+                recipe -> deleteFromMyList(recipe)
             }
         )
         //ha nincs findViewById akkor itt kell binding.recycler_view.adapter=....
@@ -101,7 +120,7 @@ class ProfileFragment : Fragment(){
 
     private fun navigateToRecipeDetail(recipe: RecipeModel){
         findNavController().navigate(
-            R.id.action_recipesFragment_to_recipeDetailFragment,
+            R.id.action_profileFragment_to_recipeDetailFragment,
             bundleOf(BUNDLE_EXTRA_SELECTED_RECIPE_ID to recipe.id)
         )
     }
@@ -110,6 +129,10 @@ class ProfileFragment : Fragment(){
         findNavController().navigate(
             R.id.action_profileFragment_to_newRecipeFragment
         )
+    }
+
+    private fun deleteFromMyList(recipe: RecipeModel){
+        RecipeRepository.deleteRecipe(recipe)
     }
 
 }
