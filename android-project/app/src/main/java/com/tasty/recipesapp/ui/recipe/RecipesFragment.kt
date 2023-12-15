@@ -17,8 +17,12 @@ import com.tasty.recipesapp.databinding.FragmentRecipeDetailBinding
 import com.tasty.recipesapp.databinding.FragmentRecipesBinding
 import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.repository.recipe.model.toRecipeEntity
+import com.tasty.recipesapp.ui.App
+import com.tasty.recipesapp.ui.profile.viewmodel.ProfileViewModel
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
+import com.tasty.recipesapp.ui.recipe.viewmodel.factory.RecipeListViewModelFactory
 
 class RecipesFragment : Fragment() {
 
@@ -51,8 +55,12 @@ class RecipesFragment : Fragment() {
 //                Log.d(TAG, "Recipe name: ${recipe.name}")
 //            }
 //        }
+        val app = requireActivity().application as App
+        val recipeRepository = app.repository
 
-        val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
+        val viewModelFactory = RecipeListViewModelFactory(recipeRepository)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(RecipeListViewModel::class.java)
+        //val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
 
         //Megnezi, hogy a context null vagy nem
         context?.let{
@@ -107,7 +115,10 @@ class RecipesFragment : Fragment() {
         )
     }
 
+
     private fun insertToMyList(recipe: RecipeModel){
-        RecipeRepository.insertRecipe(recipe)
+        val recipeEntity = recipe.toRecipeEntity()
+        val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
+        viewModel.insertRecipe(recipeEntity)
     }
 }

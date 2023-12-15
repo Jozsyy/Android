@@ -13,7 +13,11 @@ import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.FragmentNewrecipeBinding
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.repository.recipe.model.UserRatingsModel
+import com.tasty.recipesapp.repository.recipe.model.toRecipeEntity
+import com.tasty.recipesapp.repository.recipe.model.toRecipeEntity_generateID
+import com.tasty.recipesapp.ui.App
 import com.tasty.recipesapp.ui.profile.viewmodel.ProfileViewModel
+import com.tasty.recipesapp.ui.profile.viewmodel.factory.ProfileViewModelFactory
 
 class NewRecipeFragment: Fragment() {
 
@@ -29,8 +33,13 @@ class NewRecipeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        val factory = ProfileViewModelFactory((activity?.application as App).repository)
+//        val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
-        val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val app = requireActivity().application as App
+        val recipeRepository = app.repository
+
+        val viewModelFactory = ProfileViewModelFactory(recipeRepository)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(ProfileViewModel::class.java)
 
 //        saveRecipeButton = view.findViewById(R.id.save_newRecipe_button)
 //        val title: TextView = view.findViewById(R.id.title_newRecipe)
@@ -49,7 +58,8 @@ class NewRecipeFragment: Fragment() {
 //                binding.userRatingsNewRecipe.toString(),
 //                binding.instructionsNewRecipe.toString()
             )
-            viewModel.insertRecipe(recipeModel)
+            val recipeEntity = recipeModel.toRecipeEntity_generateID()
+            viewModel.insertRecipe(recipeEntity)
             navigateBack()
         }
     }

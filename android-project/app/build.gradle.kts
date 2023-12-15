@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -63,6 +64,12 @@ dependencies {
 
     //Glide - for downloading image
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    // Room dependencies
+    implementation("androidx.room:room-runtime:2.6.0")
+    kapt("androidx.room:room-compiler:2.6.0")
+    implementation("androidx.room:room-ktx:2.6.0")
+
 
     // Retrofit & OkHttp
     implementation ("com.squareup.retrofit2:retrofit:2.6.0")

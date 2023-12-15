@@ -17,10 +17,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.FragmentProfileBinding
+import com.tasty.recipesapp.databinding.RecipeListItemBinding
 import com.tasty.recipesapp.repository.recipe.RecipeRepository
+import com.tasty.recipesapp.repository.recipe.model.RecipeEntity
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.repository.recipe.model.toRecipeEntity
+import com.tasty.recipesapp.ui.App
 import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.profile.viewmodel.ProfileViewModel
+import com.tasty.recipesapp.ui.profile.viewmodel.factory.ProfileViewModelFactory
 import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment(){
@@ -57,7 +62,12 @@ class ProfileFragment : Fragment(){
 //            }
 //        }
 
-        val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val app = requireActivity().application as App
+        val recipeRepository = app.repository
+
+        val viewModelFactory = ProfileViewModelFactory(recipeRepository)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(ProfileViewModel::class.java)
+        //val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
 
         //Megnezi, hogy a context null vagy nem
@@ -82,16 +92,17 @@ class ProfileFragment : Fragment(){
             //recipesAdapter.notifyDataSetChanged() //this or that
             recipesAdapter.notifyItemRangeChanged(0,myRecipes.lastIndex)
 
+
             floatingButton=view.findViewById(R.id.newRecipeButton)
             floatingButton.setOnClickListener {
                 navigateToAddNewRecipe()
             }
 
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                recipesAdapter.setData(myRecipes)
-                recipesAdapter.notifyItemRangeChanged(0, myRecipes.lastIndex)
-            }
+//            viewLifecycleOwner.lifecycleScope.launch {
+//                recipesAdapter.setData(myRecipes)
+//                recipesAdapter.notifyItemRangeChanged(0, myRecipes.lastIndex)
+//            }
 //            var delete_button: TextView = view.findViewById(R.id.recipeItemWishlist)
 //            if( delete_button != null){
 //                delete_button.text="Delete"
@@ -100,18 +111,19 @@ class ProfileFragment : Fragment(){
 
     }
 
-    private fun initRecyclerView(){
+
+        private fun initRecyclerView(){
         recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>(),
             requireContext(),
             onItemClickListener = {
                     recipe -> navigateToRecipeDetail(recipe)
             }
-//            ,onItemClickListener2 = {
-//                recipe -> deleteFromMyList(recipe)
-//            }
-            , onItemLongClickListener = {
+            ,onItemClickListener2 = {
                 recipe -> deleteFromMyList(recipe)
             }
+//            , onItemLongClickListener = {
+//                recipe -> deleteFromMyList(recipe)
+//            }
         )
         //ha nincs findViewById akkor itt kell binding.recycler_view.adapter=....
         recycler_view.adapter=recipesAdapter
@@ -131,8 +143,21 @@ class ProfileFragment : Fragment(){
         )
     }
 
-    private fun deleteFromMyList(recipe: RecipeModel){
-        RecipeRepository.deleteRecipe(recipe)
+    private fun deleteFromMyList(recipeModel: RecipeModel){
+        val recipeEntity = recipeModel.toRecipeEntity()
+        //val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val app = requireActivity().application as App
+        val recipeRepository = app.repository
+
+        val viewModelFactory = ProfileViewModelFactory(recipeRepository)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(ProfileViewModel::class.java)
+        viewModel.deleteRecipe(recipeEntity)
+
+
+        val updatedRecipeList = viewModel.myRecipeList.value.orEmpty().toMutableList()
+        updatedRecipeList.remove(recipeModel)
+        recipesAdapter.setData(updatedRecipeList)
+        recipesAdapter.notifyDataSetChanged()
     }
 
 }

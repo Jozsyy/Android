@@ -23,7 +23,9 @@ import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.ui.App
 import com.tasty.recipesapp.ui.profile.viewmodel.factory.ProfileViewModelFactory
 import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeDetailViewModel
+import com.tasty.recipesapp.ui.recipe.viewmodel.RecipeListViewModel
 import com.tasty.recipesapp.ui.recipe.viewmodel.factory.RecipeDetailViewModelFactory
+import com.tasty.recipesapp.ui.recipe.viewmodel.factory.RecipeListViewModelFactory
 
 class RecipeDetailFragment : Fragment() {
 
@@ -46,10 +48,16 @@ class RecipeDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recipeId: Int? = arguments?.getInt(RecipesFragment.BUNDLE_EXTRA_SELECTED_RECIPE_ID)
-        Log.d(TAG, "Show details for recipe with ID = $recipeId")
+//        Log.d(TAG, "Show details for recipe with ID = $recipeId")
+
+        val app = requireActivity().application as App
+        val recipeRepository = app.repository
+
+        val viewModelFactory = RecipeDetailViewModelFactory(recipeRepository)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(RecipeDetailViewModel::class.java)
 
         //val factory = RecipeDetailViewModelFactory((activity?.application as App).repository)
-        val viewModel = ViewModelProvider(this).get(RecipeDetailViewModel::class.java)
+        //val viewModel = ViewModelProvider(this).get(RecipeDetailViewModel::class.java)
 
 
         //Trigger details loading for recipe

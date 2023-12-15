@@ -38,7 +38,13 @@ class RecipesListAdapter (
         val currentRecipe = recipeList[position]
 
         holder.recipeTitleView.text=currentRecipe.name
-        holder.recipeDescriptionView.text=currentRecipe.description
+        val description = currentRecipe.description ?: ""
+        val shortDescription = if (description.length > 200) {
+            "${description.substring(0, 200)}..."
+        } else {
+            description
+        }
+        holder.recipeDescriptionView.text = shortDescription
 
         //Download image into imageView using Glide
         Glide.with(context)
