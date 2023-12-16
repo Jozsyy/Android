@@ -8,21 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tasty.recipesapp.R
-import com.tasty.recipesapp.databinding.FragmentProfileBinding
-import com.tasty.recipesapp.databinding.FragmentRecipeDetailBinding
 import com.tasty.recipesapp.databinding.RecipeListItemBinding
-import com.tasty.recipesapp.repository.recipe.model.InstructionDTO
-import com.tasty.recipesapp.repository.recipe.model.InstructionModel
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
-import com.tasty.recipesapp.ui.profile.ProfileFragment
-import com.tasty.recipesapp.ui.recipe.RecipeDetailFragment
-import com.tasty.recipesapp.ui.recipe.RecipesFragment
 
 class RecipesListAdapter (
     private var recipeList: List<RecipeModel>,
     private val context: Context,
     private val onItemClickListener: (RecipeModel) -> Unit,  //fuggveny RecipeModel bemenet, Unit kimenet
-    private val onItemClickListener2: (RecipeModel) -> Unit = {}, //nem muszaj erteket adni neki konstruktor hivas eseten
+    private val onItemClickListener2: (RecipeModel, Int) -> Unit = { recipeModel: RecipeModel, i: Int -> }, //nem muszaj erteket adni neki konstruktor hivas eseten
     private val onItemLongClickListener: (RecipeModel) -> Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
 ): RecyclerView.Adapter<RecipesListAdapter.RecipeItemViewHolder>(){
 
@@ -83,7 +76,7 @@ class RecipesListAdapter (
                     val currentPosition: Int = this.adapterPosition
                     val currentRecipe: RecipeModel = recipeList[currentPosition]
 
-                    onItemClickListener2(currentRecipe)
+                    onItemClickListener2(currentRecipe, currentPosition)
                 }
 
                 binding.root.setOnLongClickListener{

@@ -52,9 +52,9 @@ class NewRecipeFragment: Fragment() {
                 binding.titleNewRecipe.text.toString(),//title.text.toString(),
                 binding.descriptionNewRecipe.text.toString(),//description.text.toString(),
                 binding.pictureNewRecipe.text.toString(),//picture.text.toString(),
-                UserRatingsModel(score=2F),
+                UserRatingsModel(0.89F),
                 emptyList(),
-                ""
+                binding.videoNewRecipe.text.toString()
 //                binding.userRatingsNewRecipe.toString(),
 //                binding.instructionsNewRecipe.toString()
             )

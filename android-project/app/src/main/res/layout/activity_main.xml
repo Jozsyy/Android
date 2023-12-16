@@ -55,6 +55,6 @@
             android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             app:menu="@menu/app_menu" app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
-            android:background="#802626" tools:layout_editor_absoluteX="0dp"/>
+            android:background="@drawable/background_navigationbar" tools:layout_editor_absoluteX="0dp"/>
 
 </LinearLayout>

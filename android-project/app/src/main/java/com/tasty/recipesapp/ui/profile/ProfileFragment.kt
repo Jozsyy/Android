@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -38,6 +39,7 @@ class ProfileFragment : Fragment(){
     private lateinit var recycler_view: RecyclerView
     //private val onNewRecipeButtonClickListener: ()->Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
     private lateinit var binding: FragmentProfileBinding
+    //private lateinit var binding2: RecipeListItemBinding
     private lateinit var floatingButton: FloatingActionButton
 
     override fun onCreateView(
@@ -46,7 +48,9 @@ class ProfileFragment : Fragment(){
     ): View? {
         // Inflate the layout for this fragment
     // return inflater.inflate(R.layout.fragment_profile, container, false)
+
         binding = FragmentProfileBinding.inflate(inflater,container, false)
+
         return binding.root
     }
 
@@ -99,6 +103,8 @@ class ProfileFragment : Fragment(){
             }
 
 
+            //binding2.recipeItemWishlist.text = "Delete"
+
 //            viewLifecycleOwner.lifecycleScope.launch {
 //                recipesAdapter.setData(myRecipes)
 //                recipesAdapter.notifyItemRangeChanged(0, myRecipes.lastIndex)
@@ -119,7 +125,8 @@ class ProfileFragment : Fragment(){
                     recipe -> navigateToRecipeDetail(recipe)
             }
             ,onItemClickListener2 = {
-                recipe -> deleteFromMyList(recipe)
+                recipe, position -> deleteFromMyList(recipe, position)
+
             }
 //            , onItemLongClickListener = {
 //                recipe -> deleteFromMyList(recipe)
@@ -143,7 +150,7 @@ class ProfileFragment : Fragment(){
         )
     }
 
-    private fun deleteFromMyList(recipeModel: RecipeModel){
+    private fun deleteFromMyList(recipeModel: RecipeModel, position: Int){
         val recipeEntity = recipeModel.toRecipeEntity()
         //val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val app = requireActivity().application as App
@@ -157,7 +164,8 @@ class ProfileFragment : Fragment(){
         val updatedRecipeList = viewModel.myRecipeList.value.orEmpty().toMutableList()
         updatedRecipeList.remove(recipeModel)
         recipesAdapter.setData(updatedRecipeList)
-        recipesAdapter.notifyDataSetChanged()
+        //recipesAdapter.notifyDataSetChanged()
+        recipesAdapter.notifyItemRemoved(position)
     }
 
 }

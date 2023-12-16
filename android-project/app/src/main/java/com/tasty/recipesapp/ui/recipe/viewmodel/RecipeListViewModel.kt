@@ -22,7 +22,7 @@ class RecipeListViewModel(private val recipeRepository: RecipeRepository): ViewM
 
     fun getAllRecipesFromApi(){
         viewModelScope.launch {
-            recipeList.value = recipeRepository.getRecipesFromApi("0","20",null)
+            recipeList.value = recipeRepository.getRecipesFromApi("20","40",null)
         }
     }
 

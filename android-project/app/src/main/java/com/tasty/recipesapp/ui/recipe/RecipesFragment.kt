@@ -32,7 +32,7 @@ class RecipesFragment : Fragment() {
     }
 
     private lateinit var recipesAdapter: RecipesListAdapter
-    private lateinit var recycler_view: RecyclerView
+    //private lateinit var recycler_view: RecyclerView
     private lateinit var binding: FragmentRecipesBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,7 +78,7 @@ class RecipesFragment : Fragment() {
 
             //Create adapter
             //recipesAdapter = RecipesListAdapter(recipes, requireContext())
-            recycler_view=view.findViewById(R.id.recyclerView)
+
             initRecyclerView()
             recipesAdapter.setData(recipes)
 
@@ -98,14 +98,14 @@ class RecipesFragment : Fragment() {
             }
             //Add to wishlist
             ,onItemClickListener2 ={
-                recipe -> insertToMyList(recipe)
+                recipe, pos -> insertToMyList(recipe,pos)
             }
         )
-        //ha nincs findViewById akkor itt kell binding.recycler_view.adapter=....
-        //binding = FragmentRecipesBinding.inflate(layoutInflater)
 
-        recycler_view.adapter=recipesAdapter
-        recycler_view.layoutManager=LinearLayoutManager(context)
+        //vagy view.findViewById(R.id...) <-- Faban keres   //recycler_view=view.findViewById(R.id.recyclerView)
+        //binding <-- hash map
+        binding.recyclerView.adapter=recipesAdapter
+        binding.recyclerView.layoutManager=LinearLayoutManager(context)
     }
 
     private fun navigateToRecipeDetail(recipe: RecipeModel){
@@ -116,7 +116,7 @@ class RecipesFragment : Fragment() {
     }
 
 
-    private fun insertToMyList(recipe: RecipeModel){
+    private fun insertToMyList(recipe: RecipeModel, position: Int){
         val recipeEntity = recipe.toRecipeEntity()
         val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
         viewModel.insertRecipe(recipeEntity)

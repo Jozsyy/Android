@@ -74,11 +74,6 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_profileFragment_to_recipeDetailFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -91,6 +86,18 @@
                           <Point>
                             <option name="x" value="766" />
                             <option name="y" value="212" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="recipeDetailFragment2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="754" />
+                            <option name="y" value="-459" />
                           </Point>
                         </option>
                       </LayoutPositions>

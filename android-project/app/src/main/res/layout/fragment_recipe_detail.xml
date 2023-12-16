@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-             tools:context=".ui.recipe.RecipeDetailFragment" android:background="@color/brown">
+             tools:context=".ui.recipe.RecipeDetailFragment" android:background="@drawable/background_detail">
 
 
         <ScrollView
@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content" android:id="@+id/recipeItemRatingText"
                     android:textSize="14sp"
                     android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="4dp" android:textColor="@color/black"/>
+                    android:layout_marginBottom="4dp" android:textColor="@color/yellow"/>
             <TextView
                     android:text="5.0"
                     android:layout_below="@+id/recipeImageView"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content" android:id="@+id/recipeItemRatingView"
                     android:textSize="14sp"
                     android:layout_marginTop="4dp" android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="4dp" android:textColor="@color/black"/>
+                    android:layout_marginBottom="4dp" android:textColor="@color/yellow"/>
 
 
             <TextView
@@ -66,6 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/recipeItemDescriptionView"
                     android:textSize="14sp"
+                    android:textColor="@color/white"
                     android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
                     android:layout_marginBottom="4dp"
             />
@@ -83,13 +84,14 @@
                     android:layout_below="@+id/recipeInstructions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
                     android:id="@+id/recipeItemInstruction1"/>
 
             <TextView
                     android:text="Time duration:"
                     android:layout_below="@+id/recipeItemInstruction1"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
@@ -98,6 +100,7 @@
 
             <TextView
                     android:text="50 min"
+                    android:textColor="@color/white"
                     android:layout_toEndOf="@+id/recipeTime1"
                     android:layout_below="@+id/recipeItemInstruction1"
                     android:layout_width="wrap_content"
@@ -108,6 +111,7 @@
 
             <TextView
                     android:text="instruction2"
+                    android:textColor="@color/white"
                     android:layout_below="@+id/recipeTime1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,7 +121,7 @@
             <TextView
                     android:text="Time duration:"
                     android:layout_below="@+id/recipeItemInstruction2"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
@@ -126,6 +130,7 @@
 
             <TextView
                     android:text="60 min"
+                    android:textColor="@color/white"
                     android:layout_toEndOf="@+id/recipeTime2"
                     android:layout_below="@+id/recipeItemInstruction2"
                     android:layout_width="wrap_content"
@@ -136,6 +141,7 @@
 
                 <TextView
                         android:text="instruction3"
+                        android:textColor="@color/white"
                         android:layout_below="@+id/recipeTime2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -145,7 +151,7 @@
                 <TextView
                         android:text="Time duration:"
                         android:layout_below="@+id/recipeItemInstruction3"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp" android:layout_marginEnd="4dp"
@@ -154,6 +160,7 @@
 
                 <TextView
                         android:text="40 min"
+                        android:textColor="@color/white"
                         android:layout_toEndOf="@+id/recipeTime3"
                         android:layout_below="@+id/recipeItemInstruction3"
                         android:layout_width="wrap_content"

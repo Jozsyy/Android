@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tasty.recipesapp.repository.recipe.RecipeDatabase
 import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import kotlinx.coroutines.launch
@@ -15,8 +16,8 @@ class RecipeDetailViewModel(private val recipeRepository: RecipeRepository) : Vi
     var recipe: MutableLiveData<RecipeModel> = MutableLiveData()
 
     fun fetchRecipeDetail(recipeId: Int, context: Context){
-        //val recipeDatabase = RecipeDatabase.getDatabase(context).recipeDao()
-        val recipe = recipeRepository.getRecipe(recipeId)
+        val recipeDatabase = RecipeDatabase.getDatabase(context).recipeDao()
+        val recipe = RecipeRepository(recipeDatabase).getRecipe(recipeId)
         this.recipe.value = recipe
     }
 
@@ -29,6 +30,12 @@ class RecipeDetailViewModel(private val recipeRepository: RecipeRepository) : Vi
                 recipe.value = recipeRepository.getRecipeFromApi(recipeId)
             }
         }
+    }
+
+    fun fetchMyRecipeDetail(recipeId: Int, context: Context){
+        val recipeDatabase = RecipeDatabase.getDatabase(context).recipeDao()
+        val recipe = RecipeRepository(recipeDatabase).getRecipe(recipeId)
+        this.recipe.value = recipe
     }
 
 }

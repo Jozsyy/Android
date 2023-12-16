@@ -3,7 +3,7 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
-                                                   android:layout_height="match_parent" android:background="@color/brown">
+                                                   android:layout_height="match_parent" android:background="@drawable/background_detail">
 
     <EditText
             android:layout_width="match_parent"
@@ -12,6 +12,7 @@
             android:text="Title"
             android:ems="10"
             android:id="@+id/title_newRecipe"
+            android:textColor="@color/white"
             android:layout_margin="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:text="Description"
+            android:textColor="@color/white"
             android:ems="10"
             android:layout_margin="10dp"
             android:id="@+id/description_newRecipe" tools:layout_editor_absoluteX="16dp"
@@ -28,19 +30,109 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:text="Picture URL"
+            android:text="https://s3.amazonaws.com/video-api-prod/assets/654d0916588d46c5835b7a5f547a090e/BestPastaFB.jpg"
             android:ems="10"
             android:layout_margin="10dp"
             android:id="@+id/picture_newRecipe"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintTop_toBottomOf="@+id/description_newRecipe"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:text="https://vid.tasty.co/output/116168/hls24_1542709148.m3u8"
+            android:ems="10"
+            android:layout_margin="10dp"
+            android:id="@+id/video_newRecipe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/picture_newRecipe"/>
+
+
+    <TextView
+            android:text="Instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            app:layout_constraintTop_toBottomOf="@id/video_newRecipe"
+            android:id="@+id/instructions_newRecipe" android:textColor="@color/red"
+            tools:layout_editor_absoluteX="10dp"/>
+
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="Instruction1"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:id="@+id/instruction1_newRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/instructions_newRecipe" android:layout_marginTop="8dp"
+            tools:layout_editor_absoluteX="10dp"/>
+    <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:text="Time1"
+            android:layout_margin="10dp"
+            android:id="@+id/time1_newRecipe"
+            app:layout_constraintEnd_toEndOf="@id/instruction1_newRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/instructions_newRecipe"/>
+
+
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="Instruction2"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:id="@+id/instruction2_newRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/instruction1_newRecipe" android:layout_marginTop="8dp"
+            tools:layout_editor_absoluteX="10dp"/>
+    <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:text="Time2"
+            android:layout_margin="10dp"
+            android:id="@+id/time2_newRecipe"
+            app:layout_constraintEnd_toEndOf="@id/instruction2_newRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/instruction1_newRecipe"/>
+
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="Instruction3"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:id="@+id/instruction3_newRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/instruction2_newRecipe" android:layout_marginTop="8dp"
+            tools:layout_editor_absoluteX="10dp"/>
+    <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="Time3"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:id="@+id/time3_newRecipe"
+            app:layout_constraintEnd_toEndOf="@id/instruction3_newRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/instruction2_newRecipe"/>
+
     <Button
             android:text="Save Recipe"
             android:layout_width="match_parent"
             android:layout_height="75dp" android:id="@+id/save_newRecipe_button"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:backgroundTint="@color/gray"/>
+            android:backgroundTint="#510B40"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
