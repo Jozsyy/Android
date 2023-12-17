@@ -14,6 +14,8 @@ class RecipeRepository(private val recipeDao:RecipeDao) {  //object -()
     private val TAG: String? = RecipeRepository::class.java.canonicalName
     private var recipeList: List<RecipeModel> = emptyList()
     private var myRecipeList: MutableList<RecipeModel> = emptyList<RecipeModel>().toMutableList()
+    private var wishlistRecipeList: MutableList<RecipeModel> = emptyList<RecipeModel>().toMutableList()
+
 
     //API client
     private val recipeApiClient = RecipeApiClient()
@@ -28,6 +30,7 @@ class RecipeRepository(private val recipeDao:RecipeDao) {  //object -()
             return emptyList()
         }
     }
+
 
     fun getRecipes(context: Context): List<RecipeModel> {
         lateinit var jsonString: String

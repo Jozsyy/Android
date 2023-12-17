@@ -10,5 +10,8 @@
     <item
             android:id="@+id/profileFragment"
             android:title="Profile" android:icon="@drawable/icons8_name_48"/>
+    <item
+            android:id="@+id/wishlistFragment"
+            android:title="Wishlist" android:icon="@drawable/icons8_wishlist_64"/>
 
 </menu>

@@ -15,7 +15,7 @@ class RecipesListAdapter (
     private var recipeList: List<RecipeModel>,
     private val context: Context,
     private val onItemClickListener: (RecipeModel) -> Unit,  //fuggveny RecipeModel bemenet, Unit kimenet
-    private val onItemClickListener2: (RecipeModel, Int) -> Unit = { recipeModel: RecipeModel, i: Int -> }, //nem muszaj erteket adni neki konstruktor hivas eseten
+    private val onItemClickListener2: (RecipeModel) -> Unit = {}, //nem muszaj erteket adni neki konstruktor hivas eseten
     private val onItemLongClickListener: (RecipeModel) -> Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
 ): RecyclerView.Adapter<RecipesListAdapter.RecipeItemViewHolder>(){
 
@@ -76,7 +76,7 @@ class RecipesListAdapter (
                     val currentPosition: Int = this.adapterPosition
                     val currentRecipe: RecipeModel = recipeList[currentPosition]
 
-                    onItemClickListener2(currentRecipe, currentPosition)
+                    onItemClickListener2(currentRecipe)
                 }
 
                 binding.root.setOnLongClickListener{

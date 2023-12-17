@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.nav_host_fragment).navigate(R.id.profileFragment)
                     return@OnItemSelectedListener true
                 }
+                R.id.wishlistFragment -> {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.wishlistFragment)
+                    return@OnItemSelectedListener true
+                }
 
                 else -> true
             }

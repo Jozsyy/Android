@@ -133,6 +133,6 @@
             android:layout_height="75dp" android:id="@+id/save_newRecipe_button"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:backgroundTint="#510B40"/>
+            android:backgroundTint="#512114"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

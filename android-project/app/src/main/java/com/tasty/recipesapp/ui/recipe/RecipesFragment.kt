@@ -98,7 +98,7 @@ class RecipesFragment : Fragment() {
             }
             //Add to wishlist
             ,onItemClickListener2 ={
-                recipe, pos -> insertToMyList(recipe,pos)
+                recipe -> insertToMyList(recipe)
             }
         )
 
@@ -116,9 +116,9 @@ class RecipesFragment : Fragment() {
     }
 
 
-    private fun insertToMyList(recipe: RecipeModel, position: Int){
-        val recipeEntity = recipe.toRecipeEntity()
+    private fun insertToMyList(recipe: RecipeModel){
+        //val recipeEntity = recipe.toRecipeEntity()
         val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
-        viewModel.insertRecipe(recipeEntity)
+        viewModel.insertRecipe(recipe)
     }
 }

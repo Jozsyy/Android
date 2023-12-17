@@ -4,30 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tasty.recipesapp.R
 import com.tasty.recipesapp.databinding.FragmentProfileBinding
-import com.tasty.recipesapp.databinding.RecipeListItemBinding
-import com.tasty.recipesapp.repository.recipe.RecipeRepository
-import com.tasty.recipesapp.repository.recipe.model.RecipeEntity
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
 import com.tasty.recipesapp.repository.recipe.model.toRecipeEntity
 import com.tasty.recipesapp.ui.App
-import com.tasty.recipesapp.ui.recipe.adapter.RecipesListAdapter
 import com.tasty.recipesapp.ui.profile.viewmodel.ProfileViewModel
 import com.tasty.recipesapp.ui.profile.viewmodel.factory.ProfileViewModelFactory
-import kotlinx.coroutines.launch
+import com.tasty.recipesapp.ui.recipe.adapter.MyRecipesListAdapter
 
 class ProfileFragment : Fragment(){
     companion object{
@@ -35,7 +26,7 @@ class ProfileFragment : Fragment(){
         const val BUNDLE_EXTRA_SELECTED_RECIPE_ID = "selected_recipe_id"
     }
 
-    private lateinit var recipesAdapter: RecipesListAdapter
+    private lateinit var recipesAdapter: MyRecipesListAdapter
     private lateinit var recycler_view: RecyclerView
     //private val onNewRecipeButtonClickListener: ()->Unit = {} //nem muszaj erteket adni neki konstruktor hivas eseten
     private lateinit var binding: FragmentProfileBinding
@@ -88,7 +79,7 @@ class ProfileFragment : Fragment(){
 
             //Create adapter
             //recipesAdapter = RecipesListAdapter(recipes, requireContext())
-            recycler_view=view.findViewById(R.id.recyclerView)
+            //recycler_view=view.findViewById(R.id.recyclerView)
             initRecyclerView()
             recipesAdapter.setData(myRecipes)
 
@@ -119,7 +110,7 @@ class ProfileFragment : Fragment(){
 
 
         private fun initRecyclerView(){
-        recipesAdapter = RecipesListAdapter(ArrayList<RecipeModel>(),
+        recipesAdapter = MyRecipesListAdapter(ArrayList<RecipeModel>(),
             requireContext(),
             onItemClickListener = {
                     recipe -> navigateToRecipeDetail(recipe)
@@ -133,8 +124,8 @@ class ProfileFragment : Fragment(){
 //            }
         )
         //ha nincs findViewById akkor itt kell binding.recycler_view.adapter=....
-        recycler_view.adapter=recipesAdapter
-        recycler_view.layoutManager= LinearLayoutManager(context)
+        binding.recyclerView.adapter=recipesAdapter
+        binding.recyclerView.layoutManager= LinearLayoutManager(context)
     }
 
     private fun navigateToRecipeDetail(recipe: RecipeModel){

@@ -26,9 +26,15 @@ class RecipeListViewModel(private val recipeRepository: RecipeRepository): ViewM
         }
     }
 
-    fun insertRecipe(recipeEntity: RecipeEntity){
-        viewModelScope.launch {
-            recipeRepository.insertRecipeDB(recipeEntity)
-        }
+    //Insert to myRecipelist local
+    fun insertRecipe(recipeModel: RecipeModel) {
+        recipeRepository.insertRecipe(recipeModel)
     }
+
+    //insert to DB
+//    fun insertRecipe(recipeEntity: RecipeEntity){
+//        viewModelScope.launch {
+//            recipeRepository.insertRecipeDB(recipeEntity)
+//        }
+//    }
 }

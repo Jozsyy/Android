@@ -25,7 +25,13 @@
               android:label="HomeFragment" tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_homeFragment_to_profileFragment" app:destination="@id/profileFragment"/>
         <action android:id="@+id/action_homeFragment_to_recipesFragment" app:destination="@id/recipesFragment"/>
+        <action android:id="@+id/action_homeFragment_to_wishlistFragment" app:destination="@id/wishlistFragment"/>
     </fragment>
     <fragment android:id="@+id/newRecipeFragment" android:name="com.tasty.recipesapp.ui.profile.NewRecipeFragment"
               android:label="NewRecipeFragment" tools:layout="@layout/fragment_newrecipe"/>
+    <fragment android:id="@+id/wishlistFragment" android:name="com.tasty.recipesapp.ui.wishlist.WishlistFragment"
+              android:label="fragment_wishlist" tools:layout="@layout/fragment_wishlist">
+        <action android:id="@+id/action_wishlistFragment_to_recipeDetailFragment"
+                app:destination="@id/recipeDetailFragment"/>
+    </fragment>
 </navigation>
