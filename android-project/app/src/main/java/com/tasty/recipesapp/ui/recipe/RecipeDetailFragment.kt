@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -59,9 +61,14 @@ class RecipeDetailFragment : Fragment() {
         //val factory = RecipeDetailViewModelFactory((activity?.application as App).repository)
         //val viewModel = ViewModelProvider(this).get(RecipeDetailViewModel::class.java)
 
+        val progressBar: ProgressBar = binding.progressBar
+        val scrollView : ScrollView = binding.scrollView
 
         //Trigger details loading for recipe
         recipeId?.let{
+            progressBar.visibility = View.VISIBLE
+            scrollView.visibility = View.GONE
+
             //viewModel.fetchMyRecipeDetail(it, this.requireActivity())
             viewModel.fetchRecipeDetailApi(it)
         }
@@ -70,6 +77,9 @@ class RecipeDetailFragment : Fragment() {
         viewModel.recipe.observe(viewLifecycleOwner){
 //            Log.d(TAG, "Selected recipe's details: $it")
 //            Log.d(TAG, "Selected recipe name: ${it.name}")
+
+            progressBar.visibility = View.GONE
+            scrollView.visibility = View.VISIBLE
 
             binding.recipeItemTitleView.text = it.name
             binding.recipeItemDescriptionView.text = it.description

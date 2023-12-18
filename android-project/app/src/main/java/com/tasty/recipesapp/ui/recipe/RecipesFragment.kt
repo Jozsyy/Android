@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -62,8 +63,15 @@ class RecipesFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory).get(RecipeListViewModel::class.java)
         //val viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
 
+        val progressBar:ProgressBar = binding.progressBar
+        val recyclerView = binding.recyclerView
+
         //Megnezi, hogy a context null vagy nem
         context?.let{
+
+            progressBar.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+
             //viewModel.fetchRecipeData(it)
             viewModel.getAllRecipesFromApi()
         }
@@ -78,6 +86,9 @@ class RecipesFragment : Fragment() {
 
             //Create adapter
             //recipesAdapter = RecipesListAdapter(recipes, requireContext())
+
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
 
             initRecyclerView()
             recipesAdapter.setData(recipes)
