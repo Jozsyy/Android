@@ -57,10 +57,6 @@ class RecipeRepository(private val recipeDao:RecipeDao) {  //object -()
         return recipeList.find { it.id == recipeId }
     }
 
-    fun getMyRecipe(recipeId: Int): RecipeModel? {
-        return myRecipeList.find { it.id == recipeId }
-    }
-
     suspend fun getRecipeFromApi(recipeId: Int): RecipeModel? {
         return recipeApiClient.getRecipeDetails(recipeId.toString())
     }
@@ -77,6 +73,10 @@ class RecipeRepository(private val recipeDao:RecipeDao) {  //object -()
 
     suspend fun insertRecipeDB(recipe: RecipeEntity) {
         recipeDao.insertRecipe(recipe)
+    }
+
+    suspend fun getRecipeDB(recipeId: Int): RecipeEntity? {
+        return recipeDao.getRecipeById(recipeId.toLong()) //find { it.id == recipeId }
     }
 
     suspend fun getAllRecipes(): List<RecipeModel> {

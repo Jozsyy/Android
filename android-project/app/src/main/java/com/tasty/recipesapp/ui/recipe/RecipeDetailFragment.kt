@@ -62,7 +62,7 @@ class RecipeDetailFragment : Fragment() {
 
         //Trigger details loading for recipe
         recipeId?.let{
-            //viewModel.fetchRecipeDetail(it, this.requireActivity())
+            //viewModel.fetchMyRecipeDetail(it, this.requireActivity())
             viewModel.fetchRecipeDetailApi(it)
         }
 

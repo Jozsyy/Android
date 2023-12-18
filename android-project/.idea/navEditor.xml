@@ -68,8 +68,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="487" />
-                            <option name="y" value="-117" />
+                            <option name="x" value="496" />
+                            <option name="y" value="-123" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -79,12 +79,24 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_profileFragment_to_recipeDetailFragment">
+                            <entry key="action_profileFragment_to_recipeDetail2Fragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="recipeDetail2Fragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="752" />
+                            <option name="y" value="-473" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -139,8 +151,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="522" />
+                            <option name="y" value="515" />
                           </Point>
                         </option>
                         <option name="myPositions">

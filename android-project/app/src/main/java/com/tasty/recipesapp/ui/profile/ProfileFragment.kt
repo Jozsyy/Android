@@ -130,7 +130,7 @@ class ProfileFragment : Fragment(){
 
     private fun navigateToRecipeDetail(recipe: RecipeModel){
         findNavController().navigate(
-            R.id.action_profileFragment_to_recipeDetailFragment,
+            R.id.action_profileFragment_to_recipeDetail2Fragment,
             bundleOf(BUNDLE_EXTRA_SELECTED_RECIPE_ID to recipe.id)
         )
     }

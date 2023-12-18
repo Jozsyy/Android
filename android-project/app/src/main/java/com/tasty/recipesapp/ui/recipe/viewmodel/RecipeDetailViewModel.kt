@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.tasty.recipesapp.repository.recipe.RecipeDatabase
 import com.tasty.recipesapp.repository.recipe.RecipeRepository
 import com.tasty.recipesapp.repository.recipe.model.RecipeModel
+import com.tasty.recipesapp.repository.recipe.model.toRecipeModel
 import kotlinx.coroutines.launch
 
 class RecipeDetailViewModel(private val recipeRepository: RecipeRepository) : ViewModel(){//class RecipeDetailViewModel: ViewModel(){
@@ -33,9 +34,13 @@ class RecipeDetailViewModel(private val recipeRepository: RecipeRepository) : Vi
     }
 
     fun fetchMyRecipeDetail(recipeId: Int, context: Context){
-        val recipeDatabase = RecipeDatabase.getDatabase(context).recipeDao()
-        val recipe = RecipeRepository(recipeDatabase).getRecipe(recipeId)
-        this.recipe.value = recipe
+        viewModelScope.launch {
+            val recipeDatabase = RecipeDatabase.getDatabase(context).recipeDao()
+            val recipeDetail = RecipeRepository(recipeDatabase).getRecipeDB(recipeId)
+            if (recipeDetail != null) {
+                recipe.value = recipeDetail.toRecipeModel()
+            }
+        }
     }
 
 }
